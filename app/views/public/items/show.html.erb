@@ -1,0 +1,11 @@
+<% if @item.image.attached? %>
+        <%= image_tag @item.image, size: "200x200" %>
+      <% else %>
+         <%= image_tag 'no_image', size: "200x200" %>
+      <% end %>
+      <h4>商品名</h4>
+<%= @item.name %>
+
+<h4>商品説明</h4>
+<%= @item.introduction %>
+ ￥<%= (@item.price * 1.1).round %>（税込）

@@ -1,7 +1,6 @@
 <h2>商品一覧</h2>
   <table class="table table-hover table-inverse">
     <tr>
-      <th></th>
       <th>商品ID</th>
       <th>商品名</th>
       <th>税抜価格</th>
@@ -14,19 +13,19 @@
           <%= item.id %>
         </td>
         <td>
-          <%= item.name %>
+          <%= link_to item.name, admin_item_path(item.id) %>
         </td>
         <td>
           <%= item.price %>
         </td>
         <td>
-          <%= item.genre_id %>
+          <%= item.genre.name %>
         </td>
         <td>
           <%= item.is_active %>
         </td>
-      </tr>  
-      
+      </tr>
     <% end %>
-          
-      </table>
+
+  </table>
+  <%= paginate @items %>
