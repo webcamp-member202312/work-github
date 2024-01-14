@@ -30,16 +30,13 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :items, only: [:new, :show, :index, :create, :edit, :update]
-
     resources :genres, only: [:edit, :update]
     get "genres" => "genres#index"
     post "genres" => "genres#create"
-
     get "/" => "homes#top"
-
     resources :customers, only: [:index, :show, :edit, :update]
-
     resources :orders, only: [:show, :update]
+    resources :order_details, only: [:update]
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
