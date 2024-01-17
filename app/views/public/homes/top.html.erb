@@ -1,25 +1,21 @@
-<p>ようこそ、ながのCAKへ！<br>
+<p>ようこそ、ながのCAKEへ！<br>
 このサイトは、ケーキ販売のECサイトになります。<br>
 会員ではない方も商品の閲覧はできますが、<br>
 購入には会員登録が必要になります。
 </p>
 
 <h2>新着商品</h2>
-<div>
-  <h4>商品名</h4>
-  <h4>¥0,000</h4>
-</div>
-<div>
-  <h4>商品名</h4>
-  <h4>¥0,000</h4>
-</div>
-<div>
-  <h4>商品名</h4>
-  <h4>¥0,000</h4>
-</div>
-<div>
-  <h4>商品名</h4>
-  <h4>¥0,000</h4>
-</div>
+<% @items.each do |item| %>
+  <div>
+    <% if item.image.attached? %>
+      <%= image_tag item.image, size: "200x150" %>
+    <% else %>
+       <%= image_tag 'no_image', size: "200x150" %>
+    <% end %>
+    <%= item.name %>
+    <%= item.with_tax_price %>
+  </div>
+<% end %>
+
 
 <%= link_to "すべての商品を見る>", items_path %>

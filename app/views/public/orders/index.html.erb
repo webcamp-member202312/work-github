@@ -5,20 +5,25 @@
     <td>配送先</td>
     <td>注文商品</td>
     <td>支払金額</td>
+    <td>ステータス</td>
     <td>注文詳細</td>
   </tr>
-  <% @order_detail.each do |cart_item| %>
+  <% @orders.each do |order| %>
     <tr>
+      <td><%=  l order.created_at, format: :short %></td>
       <td>
-        <%= image_tag cart_item.item.image, size: "100x80" %>
-        <strong><%= cart_item.item.name %></strong>
+        <%= order.postal_code %><br>
+        <%= order.address %><br>
+        <%= order.customer.full_name %>
       </td>
-      <td><%= (cart_item.item.price*1.1).to_i %></td>
-      <td><%= cart_item.amount %></td>
       <td>
-        <% subtotal = ((cart_item.item.price*cart_item.amount)*1.1).to_i %>
-        <%= subtotal %>
+        <% order.order_details.each do |order_detail| %>
+         <div><%= order_detail.item.name %></div>
+          <% @total += ((order_detail.total_amount) * 1.1).round %>
+        <% end %>
       </td>
+      <td><%= @total + 800 %>円</td>
+      <td><%= order.status_i18n %></td>
+      <td><%= link_to "表示する", order_path(order.id), :class => "btn" %></td>
     </tr>
-    <% total += (cart_item.item.price*cart_item.amount)*1.1 %>
   <% end %>

@@ -24,7 +24,7 @@ class Public::OrdersController < ApplicationController
         @order.address = params[:order][:address]
         @order.name = params[:order][:name]
       end
-      
+
 
    end
 
@@ -36,10 +36,10 @@ class Public::OrdersController < ApplicationController
       @order = Order.new(order_params)
       @order.customer_id = current_customer.id
       @selected_address = params[:order][:select_address]
-      @order.save!
+      @order.save
       @cart_items = current_customer.cart_items.all
 
-      if @order.save!
+      if @order.save
       if @order.status == 0
          @cart_items.each do |cart_item|
          OrderDetail.create!(order_id: @order.id, item_id: cart_item.item.id, price: cart_item.item.price, amount: cart_item.amount, making_status: 0)
@@ -51,16 +51,20 @@ class Public::OrdersController < ApplicationController
       end
       @cart_items.destroy_all
       end
-      
+
       @order.customer_id = current_customer.id
       redirect_to orders_complete_path
    end
 
    def index
       @orders = current_customer.orders
+      @total = 0
    end
 
    def show
+     @order = Order.find(params[:id])
+     @total = 0
+     @order_details = OrderDetail.where(order_id: params[:id])
    end
 
    private

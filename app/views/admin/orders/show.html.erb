@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-12">
       <h3>注文履歴詳細</h3>
-  
+
       <table class="table">
         <tr>
           <td>購入者</td>
@@ -21,12 +21,15 @@
           <td><%= @order.payment_method_i18n %></td>
         </tr>
         <tr>
-          <td>注文ステータス</td>
-          <%= f.select :order_status, @order.order_status_i18n.invert %>
+          <td>注文ステータス
+          <%= form_with model: @order do |f| %>
+          <%= f.select :order_status, Order.statuses_i18n.invert %>
           <%= f.submit "更新", class: "btn btn-success" %>
+          <% end %>
+          </td>
         </tr>
       </table>
-  
+
       <h4>注文内容</h4>
       <table class="table">
         <tr>
@@ -36,22 +39,24 @@
           <td>小計</td>
           <td>制作ステータス</td>
         </tr>
-        <% @order_details.each do |order_detail| %>
         <% @sum = 0 %>
+        <% @order_details.each do |order_detail| %>
         <% @sum += order_detail.item.with_tax_price %>
           <tr>
             <td><%= order_detail.item.name %></td>
             <td><%= order_detail.item.with_tax_price %></td>
             <td><%= order_detail.amount %></td>
             <td><%= order_detail.amount * order_detail.item.with_tax_price %></td>
-            <td>
-            <%= f.select :manufacture_status, @order_detail.manufacture_status_i18n.invert %>
-            <%= f.submit "更新", class: "btn btn-success" %>
+            <td
+              <%= form_with model: order_detail, url: admin_order_detail_path do |f| %>
+              <%= f.select :manufacture_status, OrderDetail.manufacture_statuses_i18n.invert %>
+              <%= f.submit "更新", class: "btn btn-success" %>
+              <% end %>
          　  </td>
           </tr>
         <% end %>
       </table>
-      
+
       <table class="table">
         <tr>
           <td>商品合計</td>
