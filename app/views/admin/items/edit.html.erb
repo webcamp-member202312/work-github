@@ -16,9 +16,9 @@
 <%= f.text_field :price %>
 
 <%= f.label :"販売ステータス" %>
-<%= f.radio_button :is_active, "sale" %>
+<%= f.radio_button :is_active, "true" %>
 <%= f.label :is_active_sale, "販売中" %>
-<%= f.radio_button :is_active, "sale_stop" %>
+<%= f.radio_button :is_active, "false" %>
 <%= f.label :is_active_sale_stop, "販売停止中" %>
 
 <%= f.submit '変更を保存' %>

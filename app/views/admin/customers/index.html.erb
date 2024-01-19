@@ -19,7 +19,11 @@
           <%= customer.email %>
         </td>
         <td>
-          <%= customer.is_active %>
+          <% if customer.is_active %>
+            <p class="text-success"><strong>有効</strong></p>
+          <% elsif %>
+            <p class="text-muted"><strong>退会</strong></p>
+          <% end %>
         </td>
       </tr>
     <% end %>

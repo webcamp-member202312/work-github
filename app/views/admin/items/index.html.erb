@@ -22,7 +22,11 @@
           <%= item.genre.name %>
         </td>
         <td>
-          <%= item.is_active %>
+          <% if item.is_active %>
+            <p class="text-success"><strong>販売中</strong></p>
+          <% elsif %>
+            <p class="text-muted"><strong>販売停止中</strong></p>
+          <% end %>
         </td>
       </tr>
     <% end %>

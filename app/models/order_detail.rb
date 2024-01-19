@@ -10,7 +10,7 @@ class OrderDetail < ApplicationRecord
     self.price * self.amount
   end
   
-  enum manufacture_status:
+  enum making_status:
         {
           impossible_manufacture:0,
           waiting_manufacture:1,
