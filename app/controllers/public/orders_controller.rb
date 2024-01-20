@@ -19,7 +19,7 @@ class Public::OrdersController < ApplicationController
         @order.address = ship.address
         @order.name = ship.name
 
-      elsif params[:order][:select_address] = "2"
+      elsif params[:order][:select_address] == "2"
         @order.postal_code = params[:order][:postal_code]
         @order.address = params[:order][:address]
         @order.name = params[:order][:name]
@@ -40,15 +40,9 @@ class Public::OrdersController < ApplicationController
       @cart_items = current_customer.cart_items.all
 
       if @order.save
-      if @order.status == 0
-         @cart_items.each do |cart_item|
-         OrderDetail.create!(order_id: @order.id, item_id: cart_item.item.id, price: cart_item.item.price, amount: cart_item.amount, making_status: 0)
-        end
-      else
         @cart_items.each do |cart_item|
-          OrderDetail.create!(order_id: @order.id, item_id: cart_item.item.id, price: cart_item.item.price, amount: cart_item.amount, making_status: 1)
+          OrderDetail.create!(order_id: @order.id, item_id: cart_item.item.id, price: cart_item.item.price, amount: cart_item.amount, making_status: 0)
         end
-      end
       @cart_items.destroy_all
       end
 

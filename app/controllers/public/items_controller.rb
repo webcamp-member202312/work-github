@@ -2,6 +2,11 @@ class Public::ItemsController < ApplicationController
   
   def index
     @items = Item.page(params[:page])
+    if params[:keyword].present?
+      @products = Item.where(name: params[:property_name])
+    else
+      @products = Item.all
+    end
   end
   
   def show
