@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     get "orders/complete" => "orders#complete"
     resources :orders, only: [:new, :create, :index, :show]
     get "search" => "searches#search"
+    get '/genre/search' => 'searches#genre_search'
   end
 
   namespace :admin do

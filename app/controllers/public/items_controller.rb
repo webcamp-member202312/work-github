@@ -1,12 +1,13 @@
 class Public::ItemsController < ApplicationController
   
   def index
-    @items = Item.page(params[:page])
+    @items = Item.page(params[:page]).per(8)
     if params[:keyword].present?
       @products = Item.where(name: params[:property_name])
     else
       @products = Item.all
     end
+    @genres = Genre.all
   end
   
   def show
