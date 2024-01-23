@@ -23,23 +23,25 @@ Rails.application.routes.draw do
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
     delete "cart_items/destroy_all" => "cart_items#destroy_all"
     resources :cart_items, only: [:index, :update, :destroy, :create]
-    resources :orders, only: [:new, :create, :index, :show]
     post "orders/confirm" => "orders#confirm"
     get "orders/complete" => "orders#complete"
+    resources :orders, only: [:new, :create, :index, :show]
+    get "search" => "searches#search"
+    get '/genre/search' => 'searches#genre_search'
   end
 
   namespace :admin do
     resources :items, only: [:new, :show, :index, :create, :edit, :update]
-
     resources :genres, only: [:edit, :update]
     get "genres" => "genres#index"
     post "genres" => "genres#create"
-
     get "/" => "homes#top"
-
     resources :customers, only: [:index, :show, :edit, :update]
-
     resources :orders, only: [:show, :update]
+    resources :order_details, only: [:update]
+    get "search" => "searches#search"
   end
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  
+
+
 end

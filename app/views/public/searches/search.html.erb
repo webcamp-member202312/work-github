@@ -1,0 +1,15 @@
+<table>
+  <thead>
+    <tr>
+      <th>name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <h2>items search for "<%= @word %>"</h2>
+    <% @items.each do |item| %>
+      <tr>
+        <td><%= item.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

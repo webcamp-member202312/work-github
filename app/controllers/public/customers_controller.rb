@@ -22,12 +22,12 @@ class Public::CustomersController < ApplicationController
       @customer = Customer.find(current_customer.id)
       @customer.update(is_active: false)
       reset_session
-      redirect_to customers_my_page_path
+      redirect_to root_path
    end
    
    private
    
    def public_customers_params
-    params.require(:customer).permit(:last_name, :first_name, :last_name_kane, :first_name_kana)
+    params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :postal_code, :address, :email, :telephone_number)
    end
 end
