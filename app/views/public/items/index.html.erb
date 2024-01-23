@@ -1,7 +1,6 @@
 <div class="container-fluid">
-  <div class="row">
-    <div class="d-flex">
-    <div class="genre_search">
+  <div class="d-flex">
+    <div class="container-fluid col-2">
       <table class="table">
           <tr>
             <th>ジャンル検索</th>
@@ -16,31 +15,40 @@
           <% end %>
       </table>
     </div>
-  
-   
-    <div class="row">
-      <div>
-        <h2>商品一覧</h2>
+    
+    <div class="container-fluid col-8"> 
+      <div class="row">
+        <div>
+          <h2>商品一覧</h2>
+        </div>
       </div>
-      <% @items.each do |item| %>
-      <div>
-        <% if item.image.attached? %>
-          <%= image_tag item.image, size: "150x130" %>
-        <% else %>
-           <%= image_tag 'no_image', size: "150x130" %>
+      <div class="row">
+        <% @items.each do |item| %>
+          <div>
+            <div class="col-2 ml-3 mb-3">
+              <% if item.image.attached? %>
+                <%= image_tag item.image, size: "200x130" %>
+              <% else %>
+                 <%= image_tag 'no_image', size: "150x130" %>
+              <% end %>
+            </div>
+          
+            <div class="pl-4 mb-3">
+              <%= link_to item.name, item_path(item.id) %>
+            </div>
+            <div class="pl-4 mb-3">
+              <%= (item.price * 1.1).round %>円
+            </div>
+          </div>
         <% end %>
       </div>
-      <div>
-        <%= link_to item.name, item_path(item.id) %>
-      </div>
-      <div>
-        <%= (item.price * 1.1).round %>円
-      </div>
-      <% end %>
-   
-  
-      <%= paginate @items %>
+      <div class="row">
+        <div class="col-5"></div>
+        <div class="mt-5">
+          <%= paginate @items %>
+        </div>
       </div>
     </div>
   </div>
 </div>
+  

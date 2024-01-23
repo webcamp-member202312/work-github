@@ -3,7 +3,7 @@
     <div class="col-md-12">
         <h3>注文履歴一覧</h3>
         <table class="table">
-          <tr>
+          <tr class="table-active">
             <td>購入日時</td>
             <td>購入者</td>
             <td>注文個数</td>
@@ -22,7 +22,11 @@
             </tr>
           <% end %>
         </table>
-        <%= paginate @orders %>
+        <div class="row">
+          <div class="m-auto">
+            <%= paginate @orders %>
+          </div>
+        </div>
     </div>
   </div>
 </div>
