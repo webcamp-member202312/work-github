@@ -1,5 +1,13 @@
 <div class="container">
-  <h3 class="mt-4 mb-4">商品一覧</h3>
+  <div class="row">
+    <h3 class="mt-4 mb-4">商品一覧</h3>
+    <div class="col-10 mt-4 h2 text-right">
+      <script src="https://kit.fontawesome.com/9c11671e7c.js" crossorigin="anonymous"></script>
+      <%= link_to new_admin_item_path do %>
+        <i class="fa-solid fa-circle-plus"></i>
+      <% end %>
+    </div>
+  </div>
     <table class="table table-hover table-inverse col-12">
       <tr>
         <th class="table-active col-1">商品ID</th>

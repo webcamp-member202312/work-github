@@ -26,10 +26,12 @@
         <% @items.each do |item| %>
           <div>
             <div class="col-2 ml-3 mb-3">
-              <% if item.image.attached? %>
-                <%= image_tag item.image, size: "200x130" %>
-              <% else %>
-                 <%= image_tag 'no_image', size: "150x130" %>
+              <%= link_to item_path(item.id) do %>
+                <% if item.image.attached? %>
+                  <%= image_tag item.image, size: "200x130" %>
+                <% else %>
+                   <%= image_tag 'no_image', size: "150x130" %>
+                <% end %>
               <% end %>
             </div>
           

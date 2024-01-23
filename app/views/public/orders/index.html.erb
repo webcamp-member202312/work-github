@@ -23,6 +23,7 @@
         <td>
           <% order.order_details.each do |order_detail| %>
            <div><%= order_detail.item.name %></div>
+           <% @total=0 %>
             <% @total += ((order_detail.total_amount) * 1.1).round %>
           <% end %>
         </td>
